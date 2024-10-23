@@ -1,0 +1,85 @@
+<h2>Quizz</h2>
+<link rel="stylesheet" href="styles.css">  
+
+<form>
+    <fieldset>
+    <legend>Identificação:</legend>
+    <p>Nome: <input type=
+    "text" name="Nome"></p>
+    <p>Apelido: <input type="text" name="Apelido"></p>
+    <p>Email: <input type="email" name="Email"></p>
+    </fieldset>
+
+    <label for="nomeCidade">Qual é o nome da cidade?</label>
+            <input type="text" id="nomeCidade" name="nomeCidade" placeholder="Digite o nome da cidade" size="30" maxlength="100" autocomplete="on" required autofocus><br><br>
+
+            <p>Esta cidade é conhecida por:</p>
+            <input type="radio" id="historia" name="conhecimento" value="historia" required>
+            <label for="historia">Sua história</label><br>
+            <input type="radio" id="gastronomia" name="conhecimento" value="gastronomia">
+            <label for="gastronomia">Sua gastronomia</label><br>
+            <input type="radio" id="turismo" name="conhecimento" value="turismo">
+            <label for="turismo">Seu turismo</label><br><br>
+
+            <p>Quais destas atrações você já visitou?</p>
+            <input type="checkbox" id="museu" name="atracoes" value="museu">
+            <label for="museu">Museu</label><br>
+            <input type="checkbox" id="parque" name="atracoes" value="parque">
+            <label for="parque">Parque</label><br>
+            <input type="checkbox" id="monumento" name="atracoes" value="monumento">
+            <label for="monumento">Monumento histórico</label><br><br>
+
+            <label for="ultimaVisita">Quando foi sua última visita à cidade?</label>
+            <input type="date" id="ultimaVisita" name="ultimaVisita" required><br><br>
+
+            <label for="horaChegada">Que horas você chegou à cidade?</label>
+            <input type="time" id="horaChegada" name="horaChegada" required><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Preferências sobre a Cidade</legend>
+
+            <label for="corFavorita">Escolha uma cor que represente a cidade para você:</label>
+            <input type="color" id="corFavorita" name="corFavorita" value="#ff0000"><br><br>
+
+            <label for="quantidadeVisitas">Quantas vezes você já visitou a cidade?</label>
+            <input type="number" id="quantidadeVisitas" name="quantidadeVisitas" min="1" max="100" value="1" step="1" required><br><br>
+
+            <label for="satisfacao">Avalie sua satisfação com a cidade (1 a 10):</label>
+            <input type="range" id="satisfacao" name="satisfacao" min="1" max="10" step="1" value="5" required><br><br>
+
+            <label for="bairroFavorito">Escolha seu bairro favorito da cidade:</label>
+            <select id="bairroFavorito" name="bairroFavorito" required>
+                <option value="">Selecione</option>
+                <option value="centro">Centro</option>
+                <option value="zonaSul">Zona Sul</option>
+                <option value="zonaNorte">Zona Norte</option>
+                <option value="periferia">Periferia</option>
+            </select><br><br>
+
+            <label for="pontoTuristico">Digite ou escolha o ponto turístico mais conhecido da cidade:</label>
+            <input type="text" id="pontoTuristico" name="pontoTuristico" list="turisticos" placeholder="Escolha ou digite" autocomplete="on" required>
+            <datalist id="turisticos">
+                <option value="Moinho da Quinta grande">
+                <option value="Estado Maior da Força aerea">
+                <option value="Parque dos moinhos">
+                <option value="Centro comercial Alegro">
+            </datalist><br><br>
+
+            <label for="comentarios">Deixe um comentário sobre o que você mais gosta nesta cidade:</label><br>
+            <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Escreva sua opinião" maxlength="300" required></textarea><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Envio de Arquivos</legend>
+
+            <label for="fotoCidade">Carregue uma foto da cidade:</label><br>
+            <input type="image" src="/lab2/images/Praceta das flores_grande.jpeg" alt="Upload foto" width="100" height="100"><br><br>
+
+            <input type="reset" value="Limpar Respostas">
+            <input type="submit" value="Submeter Respostas">
+        </fieldset>
+        <form method="get" action="https://postman-echo.com/get"></form>
+        
+    </form>
+

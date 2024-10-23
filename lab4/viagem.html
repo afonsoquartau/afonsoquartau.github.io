@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Viagem até Alfragide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Registar Intenção de Viagem</h1>
+
+    <form action="/submit-intencao-viagem" method="POST">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="apelido">Apelido:</label><br>
+        <input type="text" id="apelido" name="apelido" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="dataPartida">Data de Partida:</label><br>
+        <input type="date" id="dataPartida" name="dataPartida" required><br><br>
+
+        <label for="dataRegresso">Data de Regresso:</label><br>
+        <input type="date" id="dataRegresso" name="dataRegresso" required><br><br>
+
+        <label for="numPassageiros">Número de Passageiros:</label><br>
+        <input type="number" id="numPassageiros" name="numPassageiros" min="1" required><br><br>
+
+        <label for="transporteFavorito">Meio de Transporte Favorito:</label><br>
+        <select id="transporteFavorito" name="transporteFavorito" required>
+            <option value="carro">Carro</option>
+            <option value="comboio">Comboio</option>
+            <option value="aviao">Avião</option>
+            <option value="outros">Outros</option>
+        </select><br><br>
+
+        <label>Serviço Desejado:</label><br>
+        <input type="radio" id="basico" name="servico" value="basico" required>
+        <label for="basico">Básico</label><br>
+        <input type="radio" id="premium" name="servico" value="premium" required>
+        <label for="premium">Premium</label><br><br>
+
+        <label for="pedidosEspeciais">Pedidos Especiais:</label><br>
+        <textarea id="pedidosEspeciais" name="pedidosEspeciais" rows="4" cols="50" placeholder="Insira aqui os seus pedidos especiais..."></textarea><br><br>
+
+        <label for="valorPorPessoa">Valor esperado por pessoa e por dia (€):</label><br>
+        <input type="number" id="valorPorPessoa" name="valorPorPessoa" step="0.01" min="0" required><br><br>
+
+        <button type="submit">Enviar Intenção</button>
+        
+    <form method="get" action="https://postman-echo.com/get"></form>
+    </form>
+</body>
+</html>
