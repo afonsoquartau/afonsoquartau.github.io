@@ -1,0 +1,27 @@
+.row {
+    display: flex;
+    align-items: center;
+  }
+  
+  h3,
+  button,
+  input {
+    margin-right: 10px;
+  }
+  
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: brown;
+  }
+  li {
+    padding: 8px;
+  }
+  
+  select{
+    padding:1px;
+    margin-right: 10px;
+  }
