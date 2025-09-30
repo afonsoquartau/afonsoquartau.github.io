@@ -9,14 +9,20 @@
 <body>
 
 <header>
-  <h1>Menu</h1>
+  <nav>
+    <ul class="menu">
+      <li><a href="#hero">Início</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#disciplina">Interfaces Web</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
   <!-- Hero -->
   <section id="hero">
     <div class="hero-content">
-      <h2>Alfragide</h2>
+      <h2>Alfragide!</h2>
       <p>Explora, aprende e cria</p>
       <a href="#projetos" class="cta-btn">Ver Projetos</a>
     </div>
@@ -25,11 +31,23 @@
   <!-- Projetos -->
   <section id="projetos">
     <h2>Projetos</h2>
-    <ul>
-      <li><a href="lab1">Lab1</a></li>
-      <li><a href="lab2">Lab2</a></li>
-      <li><a href="lab3">Lab3</a></li>
-    </ul>
+    <div class="cards-container">
+      <div class="card">
+        <h3>Lab1</h3>
+        <p>Estrutura base</p>
+        <a href="lab1" class="card-btn">Ver Lab1</a>
+      </div>
+      <div class="card">
+        <h3>Lab2</h3>
+        <p>Estilo com css</p>
+        <a href="lab2" class="card-btn">Ver Lab2</a>
+      </div>
+      <div class="card">
+        <h3>Lab3</h3>
+        <p>Layout responsivo</p>
+        <a href="lab3" class="card-btn">Ver Lab3</a>
+      </div>
+    </div>
   </section>
 
   <!-- Disciplina -->
@@ -57,3 +75,5 @@
 
 </body>
 </html>
+
+
