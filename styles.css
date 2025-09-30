@@ -1,3 +1,56 @@
 body {
     background-color: #7FFFD4;
 }
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header fixo no topo */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #222;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Secções full screen */
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Cores diferentes para cada secção */
+#hero {
+  background-color: #f0f8ff; /* azul claro */
+}
+
+#projetos {
+  background-color: #ffe4e1; /* rosa claro */
+}
+
+#disciplina {
+  background-color: #e6ffe6; /* verde claro */
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+  color: #fff;
+}
