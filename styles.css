@@ -10,6 +10,18 @@ body {
   scroll-behavior: smooth;
 }
 
+.esquerda {
+  text-align: left;
+}
+
+p.resaltado {
+  color: red;
+}
+
+#afonso {
+  background-color: blue;
+}
+
 /* Header e menu fixo */
 header {
   position: fixed;
@@ -163,4 +175,14 @@ footer {
   padding: 1rem;
   background: #222;
   color: #fff;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* mouse over link */
+a:hover {
+  color: #FF00FF;
 }
