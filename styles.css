@@ -10,18 +10,6 @@ body {
   scroll-behavior: smooth;
 }
 
-.esquerda {
-  text-align: left;
-}
-
-p.resaltado {
-  color: red;
-}
-
-#afonso {
-  background-color: blue;
-}
-
 /* Header e menu fixo */
 header {
   position: fixed;

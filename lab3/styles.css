@@ -1,0 +1,85 @@
+/* Reset básico */
+
+:root{
+    --max-width: 900px;    /* largura máxima do bloco central */
+    --min-gap: 16px;       /* espaço mínimo lateral em ecrãs pequenos */
+    --section-padding: 20px;
+    --bg: #f7f7f7;
+    --card-bg: #fff;
+    --radius: 8px;
+    --shadow: 0 4px 10px rgba(0,0,0,0.04);
+  }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Header e menu fixo */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  padding: 1rem 0;
+  z-index: 1000;
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none; /* remove bullets */
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none; /* remove sublinhado */
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #ff6f61;
+}
+
+main {
+    display:block;
+    padding-top: 3em;
+}
+
+  .conteudo {
+    width: min(90vw, var(--max-width)); /* ocupa até 92% da viewport ou a max-width */
+    margin-left: auto;
+    margin-right: auto;                 /* centra horizontalmente */
+    background: var(--card-bg);
+    padding: var(--section-padding);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: left;                   /* garante conteúdo alinhado à esquerda */
+  }
+
+  .conteudo img {
+  display: block;        /* elimina espaço extra em imagens inline */
+  width: 100%;           /* ocupa sempre 100% da largura da secção */
+  height: auto;          /* mantém proporção */
+  max-width: 100%;       /* garante que nunca ultrapassa o container */
+  border-radius: 6px;    /* opcional: cantos arredondados */
+}
+
+  .conteudo iframe {
+  display: block;        /* elimina espaço extra em imagens inline */
+  width: 100%;           /* ocupa sempre 100% da largura da secção */
+  height: auto;          /* mantém proporção */
+  max-width: 100%;       /* garante que nunca ultrapassa o container */
+  border-radius: 6px;    /* opcional: cantos arredondados */
+}
