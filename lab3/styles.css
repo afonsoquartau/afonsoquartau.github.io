@@ -83,3 +83,10 @@ main {
   max-width: 100%;       /* garante que nunca ultrapassa o container */
   border-radius: 6px;    /* opcional: cantos arredondados */
 }
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+  color: #fff;
+}
