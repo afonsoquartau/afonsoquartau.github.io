@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 5</title>
+</head>
+
+<body>
+<ol>
+   <li><span id="passar">Passa por aqui!</span></li>
+   <br>
+   <li><span id="pintar">Pinta-me!</span> <button onclick="mudaCorTexto('red');">Red</button> <button onclick="mudaCorTexto('green');">Green</button> <button onclick="mudaCorTexto('blue');">Blue</button></li>
+   <br>
+   <li>Experimenta escrever... <input id="input1" type="text"></li>
+   <br>
+   <li>Escolha uma cor em ingles: <input id="input2" type="text"> <button>Submeter</button> </li>
+   <br>
+   <li><button onclick="alert('Botão clicado!');">Conta!</button> <span id="valor">33</span></li>
+</ol>
+
+  <script>
+
+    // Codigo do efeito 1
+
+    const elemento1 = document.getElementById("passar");
+
+    elemento1.addEventListener("mouseover", function() {
+    elemento1.textContent = "Obrigado por passares!";
+    });
+
+    elemento1.addEventListener("mouseout", function() {
+    elemento1.textContent = "Passa por aqui!";
+    });
+
+    // Codigo do efeito 2
+
+    function mudaCorTexto(cor) {
+        const elemento2 = document.getElementById("pintar");
+        elemento2.style.color = cor;
+    }
+  </script>
+
+</body>
