@@ -15,9 +15,9 @@
    <br>
    <li>Experimenta escrever... <input id="input1" type="text"></li>
    <br>
-   <li>Escolha uma cor em ingles: <input id="input2" type="text"> <button>Submeter</button> </li>
+   <li>Escolha uma cor em ingles: <input id="input2" type="text"> <button onclick="mudaCorFundo();">Submeter</button> </li>
    <br>
-   <li><button onclick="alert('Botão clicado!');">Conta!</button> <span id="valor">33</span></li>
+   <li><button onclick="conta();">Conta!</button> <span id="valor">33</span></li>
 </ol>
 
   <script>
@@ -40,6 +40,35 @@
         const elemento2 = document.getElementById("pintar");
         elemento2.style.color = cor;
     }
+
+    // Codigo efeito 3
+
+    const elemento3 = document.getElementById("input1");
+
+    elemento3.addEventListener('input', mudaCorCaixa);
+
+    function mudaCorCaixa() {
+      const cores = ["blue", "green", "yellow", "gray"];
+      const cor = cores[Math.floor(Math.random() * cores.length)];
+      const elemento = document.getElementById("input1");
+      // alert(cor);
+      elemento.style.backgroundColor = cor;
+    }
+
+    // Codigo efeito 4
+
+    function mudaCorFundo() {
+      const elemento = document.getElementById("input2");
+      document.body.style.backgroundColor = elemento.value;
+    }
+
+    // Codigo efeito 5
+
+    function conta() {
+      const elemento = document.getElementById("valor");
+      elemento.textContent = Number(elemento.textContent)+1;
+    }
+
   </script>
 
 </body>
