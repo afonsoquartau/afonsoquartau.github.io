@@ -40,7 +40,21 @@ function maisculas() {
     // Converter texto a maiscula
     // Escrever conteudo da variavel na caixa de texto
 }
+<body>
+  <label for="texto">Escreva algo:</label><br>
+  <input id="texto" type="text" placeholder="escreva aqui" style="width: 300px;">
+  <button onclick="maisculas()">MAIÚSCULAS</button>
 
+  <script>
+    function maisculas() {
+      const el = document.getElementById('texto');
+      if (!el) return;
+      el.value = el.value.toUpperCase();
+      el.focus();
+    }
+  </script>
+</body>
+</html>
 </script>
 
 </body>
