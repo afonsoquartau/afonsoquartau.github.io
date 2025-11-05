@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,6 @@
 </head>
 
 <body>
-
   <header>
     <h1 id="titulo">Loja</h1>
     <nav>
@@ -20,12 +20,12 @@
   </header>
 
   <main>
-
     <h2 id="tituloProdutos">Selecione os seus produtos</h2>
 
-    <div class="filtros">
+    <!-- 🔹 Barra de filtros centralizada -->
+    <div class="barra-filtros">
       <label for="filtroCategoria">Filtrar:</label>
-      <select id="filtroCategoria" name="categoria"></select>
+      <select name="categoria" id="filtroCategoria"></select>
 
       <label for="ordenarPreco">Ordenar por preço:</label>
       <select id="ordenarPreco">
@@ -35,19 +35,18 @@
       </select>
 
       <label for="inputPesquisa">Procurar:</label>
-      <input type="search" id="inputPesquisa" placeholder="pesquise por produto">
+      <input id="inputPesquisa" type="search" placeholder="pesquise por produto">
     </div>
+    <!-- 🔹 Fim da barra de filtros -->
 
     <section id="produtos"></section>
 
     <section id="cesto">
       <h2>Produtos Selecionados</h2>
       <section id="itensCesto"></section>
-
       <h2 id="precoTotal">Custo total: 0.00 €</h2>
 
       <section id="compra">
-
         <label>
           <input type="checkbox" id="verificaEstudante">
           És estudante do DEISI?
@@ -66,13 +65,10 @@
         </div>
       </section>
     </section>
-
   </main>
 
-  <footer>
-    <p>2025</p>
-  </footer>
-
+  <footer>2025</footer>
   <script src="main.js"></script>
 </body>
+
 </html>
