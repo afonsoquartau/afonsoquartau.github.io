@@ -1,0 +1,157 @@
+/* CSS geral (ajuste cores/variáveis conforme precisar) */
+:root{
+  --card-bg: #fff;
+  --card-border: #e6e6e6;
+  --accent: #1f8ef1;
+  --text: #222;
+  --muted: #666;
+  --radius: 12px;
+  --gap: 12px;
+  --shadow: 0 6px 18px rgba(20,20,20,0.06);
+  --max-width-card: 360px;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+body{
+    font-family:var(--font-sans);
+    color:var(--text);
+    background:#f7f8fb;
+    padding:24px;
+}
+
+h1 {
+    color: yellow;
+}
+
+/* Grid de cards (opcional) */
+.cards-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap:20px;
+}
+
+/* Card — estrutura retangular */
+article {
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius);
+  overflow:hidden;              /* garante cantos arredondados também para a imagem */
+  box-shadow:var(--shadow);
+  max-width:var(--max-width-card);
+  display:flex;
+  flex-direction:column;        /* imagem em cima, conteúdo abaixo */
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+/* Hover leve */
+article:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(20,20,20,0.09);
+}
+
+/* Imagem — ocupa toda a largura, altura controlada */
+article img {
+  width:100%;
+  height:190px;                /* ajustar conforme necessidade */
+  object-fit:cover;            /* cobre sem distorcer */
+  display:block;
+}
+
+/* Corpo do card */
+.card__body{
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+/* Título */
+article h2 {
+  font-size:1.05rem;
+  margin:0;
+  line-height:1.2;
+  font-weight:600;
+}
+
+article p.custo {
+  margin:0;
+  font-weight:700;
+  font-size:1rem;
+  color:var(--accent);
+}
+
+/* Descrição com truncamento para evitar estourar o card */
+article p.descricao {
+  margin:0;
+  color:var(--muted);
+  font-size:0.95rem;
+  line-height:1.35;
+  /* limitar linhas e adicionar '...' */
+  display:-webkit-box;
+  -webkit-line-clamp:3; /* mostrar até 3 linhas */
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Variante horizontal (imagem à esquerda) */
+.card--horizontal{
+  flex-direction:row;
+  gap:0;
+  height:180px;
+}
+.card--horizontal .card__img{
+  width:40%;
+  height:100%;
+  min-width:140px;
+}
+.card--horizontal .card__body{
+  padding:14px;
+}
+
+/* Responsividade — em telas pequenas os horizontais viram verticais */
+@media (max-width:560px){
+  .card--horizontal{flex-direction:column}
+  .card--horizontal .card__img{width:100%; height:160px}
+}
+
+/* Acessibilidade: foco visível */
+.card:focus-within{
+  outline:3px solid rgba(31,142,241,0.15);
+  outline-offset:2px;
+}
+
+/* Pequena utilidade: preço secundário (ex: riscado) */
+.custo--old{
+  color:var(--muted);
+  text-decoration:line-through;
+  font-weight:500;
+  font-size:0.9rem;
+  margin-left:8px;
+}
+
+
+article {
+
+}
+
+article h2 {
+
+}
+
+article img {
+
+}
+
+article p.artigo_custo {
+
+}
+
+article p.artigo_descricao {
+
+}
+
+article.button {
+
+}
