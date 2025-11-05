@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 6</title>
+    <title>Lab 7</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -22,7 +22,29 @@
 
 <main>
     <h2>Selecione os seus produto</h2>
+
+    <section id="opcoes">
+
+        <label for="filtros">Filter</label>
+        <select id="filtros" onchange="filtrar()">
+            <option value="todas">Todas as categorias</option>
+        </select>
+
+        <label for="ordem">Ordenar</label>
+        <select id="ordem" onchange="ordenar()">
+            <option value="">Ordenar</option>
+            <option value="decrescente">Decrescente pelo preço</option>
+            <option value="crescente">Crescente pelo preço</option>
+        </select>
+
+        <label for="procurar">Procurar</label>
+        <input type="text" id="procurar">
+
+    </section>
+
     <section id="produtos" class="cards-grid">
+
+        <!--
         <article>
             <h3>Nome do Produto 1</h3>
             <img src="../images/diw.svg">
@@ -30,14 +52,7 @@
             <p class="artigo_descricao">Aqui vais uma descricao do artigo.</p>
             <button>Adcionar ao cesto</button>
         </article>
-
-        <article>
-            <h3>Nome do Produto</h3>
-            <img src="../images/diw.svg">
-            <p class="artigo_custo">Custo total: 30€</p>
-            <p class="artigo_descricao">Aqui vais uma descricao do artigo.</p>
-            <button>Adcionar ao cesto</button>
-        </article>
+        -->
 
     </section>
 
@@ -51,7 +66,6 @@
 
 </footer>
 
-<script src="produtos.js"></script>
 <script src="main.js"></script>
 
 </body>

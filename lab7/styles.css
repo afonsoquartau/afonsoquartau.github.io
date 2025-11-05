@@ -20,8 +20,20 @@ body{
     padding:24px;
 }
 
-h1 {
-    color: yellow;
+#opcoes {
+  background: #fff;
+  border-radius: 8px;
+  margin: 1em 0;        /* separação acima e abaixo */
+  padding: 1em;         /* espaço interno para respirar */
+  
+  display: flex;        /* coloca os elementos na mesma linha */
+  flex-wrap: wrap;      /* permite quebrar linha se faltar espaço */
+  gap: 1em;             /* espaço entre os elementos */
+  align-items: center;  /* centraliza verticalmente */
+}
+
+label {
+  font-weight: bold;
 }
 
 /* Grid de cards (opcional) */

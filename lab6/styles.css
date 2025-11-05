@@ -20,10 +20,6 @@ body{
     padding:24px;
 }
 
-h1 {
-    color: yellow;
-}
-
 /* Grid de cards (opcional) */
 .cards-grid{
   display:grid;

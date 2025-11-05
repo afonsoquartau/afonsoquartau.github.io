@@ -2,6 +2,34 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    // Carrego as categorias que estao disponiveis pela API
+    fetch("https://deisishop.pythonanywhere.com/categories/")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Erro ao obter categorias da API");
+      }
+      return response.json();
+    })
+    .then(data => {
+      categorias = data; // Guarda o array no variável global
+      console.log("Categorias carregadas:", categorias);
+    })
+    .catch(err => {
+      console.error("Erro:", err);
+    });
+
+    // Coloco as categorias no select "filtros"
+    const select_filtros = document.getElementById("filtros");
+
+    for (let c in categorias) {
+        
+    }
+
+
+    // Carrego os produtos pela API
+
+    // Adiciono os produto ao section "produtos"
+
     produtos.forEach(p => {
 
         const container = document.getElementById("produtos");
