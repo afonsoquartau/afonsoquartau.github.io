@@ -1,72 +1,73 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 7</title>
+    <title>Document</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <header>
+        <h1 id="titulo">Loja</h1>
+        <nav>
+            <ul>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#cesto">Cesto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2 id="tituloProdutos">Selecione os seus produtos</h2>
 
-<header>
-    <h1>Loja</h1>
-    <nav>
-    <ul>
-        <li><a href="#produtos">Produtos</a></li>
-        <li><a href="#cesto">Cesto</a></li>
-    </ul>
-    </nav>
-</header>
+        <label for="filtroCategoria">Filtrar:</label>
+        <select name="categoria" id="filtroCategoria"></select>
 
-<main>
-    <h2>Selecione os seus produto</h2>
-
-    <section id="opcoes">
-
-        <label for="filtros">Filter</label>
-        <select id="filtros" onchange="filtrar()">
-            <option value="todas">Todas as categorias</option>
+        <label for="ordenarPreco">Ordenar por preço:</label>
+        <select id="ordenarPreco">
+            <option value="">Ordenar pelo preço</option>
+            <option value="desc">Preço Decrescente</option>
+            <option value="asc">Preço Crescente</option>
         </select>
 
-        <label for="ordem">Ordenar</label>
-        <select id="ordem" onchange="ordenar()">
-            <option value="">Ordenar</option>
-            <option value="decrescente">Decrescente pelo preço</option>
-            <option value="crescente">Crescente pelo preço</option>
-        </select>
+        <label for="inputPesquisa">Procurar</label>
+        <input id="inputPesquisa" type="search" placeholder="pesquise por produto">
 
-        <label for="procurar">Procurar</label>
-        <input type="text" id="procurar">
 
-    </section>
 
-    <section id="produtos" class="cards-grid">
+        <section id="produtos">
 
-        <!--
-        <article>
-            <h3>Nome do Produto 1</h3>
-            <img src="../images/diw.svg">
-            <p class="artigo_custo">Custo total: 30€</p>
-            <p class="artigo_descricao">Aqui vais uma descricao do artigo.</p>
-            <button>Adcionar ao cesto</button>
-        </article>
-        -->
+        </section>
+        <section id="cesto">
+            <h2>Produtos Selecionados</h2>
+            <section id="itensCesto"></section>
+            <h2 id="precoTotal">Custo total: 0.00 €</h2>
 
-    </section>
+            <section id="compra">
+                <label>
+                    <input type="checkbox" id="verificaEstudante">
+                    És estudante do DEISI?
+                </label>
 
-    <h2>Produtos selecionados</h2>
-    <section id="cesto">
-      
-    </section>
-</main>
+                <div id="linhaCupao">
+                    <label for="inputCupao">Cupão de desconto:</label>
+                    <input type="text" id="inputCupao">
+                </div>
 
-<footer>
+                <button id="botaoComprar">Comprar</button>
 
-</footer>
+                <div id="respostaCompra">
+                    <h2 id="custoTotal"></h2>
+                    <p id="referencia"></p>
+                </div>
+            </section>
 
-<script src="main.js"></script>
 
+        </section>
+    </main>
+    <footer>2025</footer>
+    <script src="main.js"></script>
 </body>
+
 </html>
