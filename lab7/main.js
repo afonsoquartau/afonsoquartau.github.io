@@ -1,196 +1,143 @@
-if (!localStorage.getItem('produtos-selecionados')) {
-    localStorage.setItem('produtos-selecionados', JSON.stringify([]));
+if (!localStorage.getItem('itensCarrinho')) {
+  localStorage.setItem('itensCarrinho', JSON.stringify([]));
 }
 
+const areaProdutos = document.querySelector('#produtos');
+const areaCarrinho = document.querySelector('#itensCesto');
+const totalElemento = document.querySelector('#precoTotal');
 
-const seccaoProdutos = document.querySelector('#produtos');
-const seccaoCesto = document.querySelector('#itensCesto');
-const precoTotalElemento = document.querySelector('#precoTotal');
-
-
-function atualizarPrecoTotal() {
-    const produtosCesto = JSON.parse(localStorage.getItem('produtos-selecionados'));
-    const total = produtosCesto.reduce((acc, produto) => acc + produto.price, 0);
-    precoTotalElemento.textContent = `Custo total: ${total} €`;
+function renderCarrinho() {
+  areaCarrinho.innerHTML = '';
+  const itens = JSON.parse(localStorage.getItem('itensCarrinho')) || [];
+  itens.forEach((produto, i) => {
+    const card = criarItemCarrinho(produto, i);
+    areaCarrinho.appendChild(card);
+  });
+  atualizarTotal();
 }
 
-
-function criarProduto(produto) {
-    const artigo = document.createElement('article');
-
-    artigo.innerHTML = `
-        <h3>${produto.title}</h3>
-        <img src="${produto.image}" alt="${produto.title}">
-        <p class="preco">Custo total: ${produto.price} €</p>
-        <p class="descricao">${produto.description}</p>
-        <button type="button">+ Adicionar ao Cesto</button>
-    `;
-
-    artigo.querySelector('button').addEventListener('click', () => {
-        const produtosCesto = JSON.parse(localStorage.getItem('produtos-selecionados'));
-        produtosCesto.push(produto);
-        localStorage.setItem('produtos-selecionados', JSON.stringify(produtosCesto));
-        atualizaCesto();
-    });
-
-    return artigo;
+function atualizarTotal() {
+  const itens = JSON.parse(localStorage.getItem('itensCarrinho')) || [];
+  const soma = itens.reduce((t, p) => t + p.price, 0);
+  totalElemento.textContent = `Custo total: ${soma.toFixed(2)} €`;
 }
 
-
-function criaProdutoCesto(produto, index) {
-    const artigoCesto = document.createElement('article');
-    artigoCesto.classList.add('produtoCesto');
-
-    artigoCesto.innerHTML = `
-        <h3>${produto.title}</h3>
-        <img src="${produto.image}" alt="${produto.title}">
-        <p class="preco">Custo total: ${produto.price} €</p>
-        <button type="button">- Remover do Cesto</button>
-    `;
-
-    const botaoRemover = artigoCesto.querySelector('button');
-    botaoRemover.addEventListener('click', () => {
-        const produtosCestoAtual = JSON.parse(localStorage.getItem('produtos-selecionados'));
-        produtosCestoAtual.splice(index, 1);
-        localStorage.setItem('produtos-selecionados', JSON.stringify(produtosCestoAtual));
-        atualizaCesto();
-    });
-
-    return artigoCesto;
+function gerarProduto(produto) {
+  const bloco = document.createElement('article');
+  bloco.innerHTML = `
+    <h3>${produto.title}</h3>
+    <img src="${produto.image}" alt="${produto.title}">
+    <p class="preco">Preço: ${produto.price} €</p>
+    <p class="descricao">${produto.description}</p>
+    <button type="button">Adicionar ao Cesto</button>
+  `;
+  bloco.querySelector('button').addEventListener('click', () => {
+    const lista = JSON.parse(localStorage.getItem('itensCarrinho'));
+    lista.push(produto);
+    localStorage.setItem('itensCarrinho', JSON.stringify(lista));
+    renderCarrinho();
+  });
+  return bloco;
 }
 
-
-function atualizaCesto() {
-    seccaoCesto.innerHTML = '';
-    const produtosCesto = JSON.parse(localStorage.getItem('produtos-selecionados'));
-
-    produtosCesto.forEach((produto, index) => {
-        const artigoCesto = criaProdutoCesto(produto, index);
-        seccaoCesto.appendChild(artigoCesto);
-    });
-
-    atualizarPrecoTotal();
+function criarItemCarrinho(produto, indice) {
+  const item = document.createElement('article');
+  item.classList.add('produtoCesto');
+  item.innerHTML = `
+    <h3>${produto.title}</h3>
+    <img src="${produto.image}" alt="${produto.title}">
+    <p class="preco">Preço: ${produto.price} €</p>
+    <button type="button">Remover</button>
+  `;
+  item.querySelector('button').addEventListener('click', () => {
+    const lista = JSON.parse(localStorage.getItem('itensCarrinho'));
+    lista.splice(indice, 1);
+    localStorage.setItem('itensCarrinho', JSON.stringify(lista));
+    renderCarrinho();
+  });
+  return item;
 }
 
+function mostrarProdutos(lista) {
+  areaProdutos.innerHTML = '';
+  lista.forEach(prod => {
+    const artigo = gerarProduto(prod);
+    areaProdutos.appendChild(artigo);
+  });
+}
 
-function carregarProdutos(listaProdutos) {
-    seccaoProdutos.innerHTML = '';
-    listaProdutos.forEach(produto => {
-        const artigo = criarProduto(produto);
-        seccaoProdutos.appendChild(artigo);
-    });
+function aplicarFiltros(produtos, categoria, termo, ordem) {
+  let filtrados = [...produtos];
+  if (categoria) filtrados = filtrados.filter(p => p.category === categoria);
+  if (termo) filtrados = filtrados.filter(p => p.title.toLowerCase().includes(termo.toLowerCase()));
+  if (ordem === 'asc') filtrados.sort((a, b) => a.price - b.price);
+  if (ordem === 'desc') filtrados.sort((a, b) => b.price - a.price);
+  mostrarProdutos(filtrados);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const filtroCategoria = document.querySelector('#filtroCategoria');
-    const ordenarPreco = document.querySelector('#ordenarPreco');
-    const inputPesquisa = document.querySelector('#inputPesquisa');
+  const selCategoria = document.querySelector('#filtroCategoria');
+  const selOrdenar = document.querySelector('#ordenarPreco');
+  const campoPesquisa = document.querySelector('#inputPesquisa');
+  let produtos = [];
 
-    let produtos = [];
-
-    fetch("https://deisishop.pythonanywhere.com/categories")
-        .then(response => response.json())
-        .then(categorias => {
-            console.log("Categorias:", categorias);
-            categorias.forEach(categoria => {
-                const option = document.createElement('option');
-                option.value = categoria;
-                option.textContent = categoria;
-                filtroCategoria.append(option);
-            });
-        })
-        .catch(error => console.error('Erro:', error));
-
-    fetch("https://deisishop.pythonanywhere.com/products")
-        .then(response => response.json())
-        .then(data => {
-            produtos = data;
-            carregarProdutos(produtos);
-        })
-        .catch(error => console.error('Erro:', error));
-
-    filtroCategoria.addEventListener('change', () => {
-        const categoriaSelecionada = filtroCategoria.value;
-
-        fetch("https://deisishop.pythonanywhere.com/products")
-            .then(response => response.json())
-            .then(produtos => {
-                let produtosFiltrados = produtos;
-                if (categoriaSelecionada !== "") {
-                    produtosFiltrados = produtos.filter(produto => produto.category === categoriaSelecionada);
-                }
-
-                seccaoProdutos.innerHTML = '';
-                carregarProdutos(produtosFiltrados);
-            })
-            .catch(error => console.error('Erro:', error));
+  fetch('https://deisishop.pythonanywhere.com/categories')
+    .then(r => r.json())
+    .then(categorias => {
+      categorias.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat;
+        opt.textContent = cat;
+        selCategoria.appendChild(opt);
+      });
     });
 
-    function aplicarFiltros() {
-        const categoriaSelecionada = filtroCategoria.value;
-        const termoPesquisa = inputPesquisa.value.trim().toLowerCase();
-        const ordem = ordenarPreco.value;
+  fetch('https://deisishop.pythonanywhere.com/products')
+    .then(r => r.json())
+    .then(data => {
+      produtos = data;
+      mostrarProdutos(produtos);
+    });
 
-        let produtosFiltrados = produtos;
+  const filtrarTudo = () => {
+    aplicarFiltros(
+      produtos,
+      selCategoria.value,
+      campoPesquisa.value.trim(),
+      selOrdenar.value
+    );
+  };
 
-        if (categoriaSelecionada !== "") {
-            produtosFiltrados = produtosFiltrados.filter(produto => produto.category === categoriaSelecionada);
-        }
+  selCategoria.addEventListener('change', filtrarTudo);
+  selOrdenar.addEventListener('change', filtrarTudo);
+  campoPesquisa.addEventListener('input', filtrarTudo);
 
-        if (termoPesquisa !== "") {
-            produtosFiltrados = produtosFiltrados.filter(produto =>
-                produto.title.toLowerCase().includes(termoPesquisa)
-            );
-        }
-
-        if (ordem === 'asc') {
-            produtosFiltrados.sort((a, b) => a.price - b.price);
-        } else if (ordem === 'desc') {
-            produtosFiltrados.sort((a, b) => b.price - a.price);
-        }
-
-        carregarProdutos(produtosFiltrados);
-    }
-
-    filtroCategoria.addEventListener('change', aplicarFiltros);
-    ordenarPreco.addEventListener('change', aplicarFiltros);
-    inputPesquisa.addEventListener('input', aplicarFiltros);
-
-    atualizaCesto();
+  renderCarrinho();
 });
 
-const botaoComprar = document.querySelector('#botaoComprar');
+const btnComprar = document.querySelector('#botaoComprar');
+const chkEstudante = document.querySelector('#verificaEstudante');
+const campoCupao = document.querySelector('#inputCupao');
+const totalFinal = document.querySelector('#custoTotal');
+const refPagamento = document.querySelector('#referencia');
 
-const verificaEstudante = document.querySelector('#verificaEstudante');
+btnComprar.addEventListener('click', () => {
+  const itens = JSON.parse(localStorage.getItem('itensCarrinho'));
+  const ids = itens.map(p => p.id);
+  const payload = {
+    products: ids,
+    student: chkEstudante.checked,
+    coupon: campoCupao.value.trim()
+  };
 
-const inputCupao = document.querySelector('#inputCupao');
-
-const respostaCompra = document.querySelector('#respostaCompra');
-
-const custoTotal = document.querySelector('#custoTotal');
-
-const referencia = document.querySelector('#referencia');
-
-botaoComprar.addEventListener('click', () => {
-    const produtosCesto = JSON.parse(localStorage.getItem('produtos-selecionados'));
-    const idsProdutos = produtosCesto.map(produto => produto.id);
-    const estudante = verificaEstudante.checked;
-    const cupao = inputCupao.value.trim();
-
-    const data = {
-        products: idsProdutos,
-        student: estudante,
-        coupon: cupao
-    };
-
-    fetch('https://deisishop.pythonanywhere.com/buy/',  {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.json())
-        .then(data => {
-            custoTotal.textContent = `Valor final a pagar (com eventuais descontos): ${data.totalCost} €`;
-            referencia.textContent = `Referência de pagamento: ${data.reference} €`;
-        });
+  fetch('https://deisishop.pythonanywhere.com/buy/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+    .then(r => r.json())
+    .then(data => {
+      totalFinal.textContent = `Valor final a pagar: ${data.totalCost} €`;
+      refPagamento.textContent = `Referência de pagamento: ${data.reference}`;
+    });
 });
